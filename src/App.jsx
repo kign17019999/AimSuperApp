@@ -2,32 +2,51 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import WheelComponent from "react-wheel-of-prizes";
 
 function App() {
   const [count, setCount] = useState(0)
 
+  const segments = [
+    "better luck next time",
+    "won 70",
+    "won 10",
+    "better luck next time",
+    "won 2",
+    "won uber pass"
+  ];
+  const segColors = ["#EE4040", "#F0CF50", "#815CD1", "#3DA5E0", "#34A24F"];
+  const onFinished = (winner) => {
+    console.log(winner);
+  };
+
+  const wheelContainerStyle = {
+    maxWidth: '80%',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+  };
+
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <p>HI</p>
+      <h1>Hello CodeSandbox</h1>
+      <div style={wheelContainerStyle}>
+        <WheelComponent
+          segments={segments}
+          segColors={segColors}
+          onFinished={(winner) => onFinished(winner)}
+          primaryColor="black"
+          contrastColor="white"
+          buttonText="Spin"
+          isOnlyOnce={false}
+          size={190}
+          upDuration={500}
+          downDuration={600}
+          fontFamily="Arial"
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h2>Start editing to see some magic happen!</h2>
     </>
   )
 }
